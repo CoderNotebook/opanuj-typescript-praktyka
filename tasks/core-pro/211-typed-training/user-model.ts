@@ -1,3 +1,22 @@
+export type Address = {
+  street: string;
+  city: string;
+  country: string;
+  postalCode: string;
+};
+
+export const enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  GUEST = 'GUEST',
+}
+
+export type Settings = {
+  notifications: boolean;
+  theme: 'light' | 'dark';
+  language: string;
+};
+
 export interface User {
   id: number;
   firstName: string;
@@ -6,20 +25,11 @@ export interface User {
   age: number;
   isActive: boolean;
   dateOfBirth: Date;
-  address: {
-    street: string;
-    city: string;
-    country: string;
-    postalCode: string;
-  };
+  address: Address;
   phoneNumbers: string[];
-  role: 'admin' | 'user' | 'guest';
+  role: Role;
   lastLoginTimestamp: number;
-  settings: {
-    notifications: boolean;
-    theme: 'light' | 'dark';
-    language: string;
-  };
+  settings: Settings;
 }
 
 export const regularUser: User = {
@@ -37,7 +47,7 @@ export const regularUser: User = {
     postalCode: '10001',
   },
   phoneNumbers: ['+1-555-555-5555', '+1-555-555-5556'],
-  role: 'user',
+  role: Role.USER,
   lastLoginTimestamp: Date.now(),
   settings: {
     notifications: true,
