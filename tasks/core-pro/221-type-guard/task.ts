@@ -27,13 +27,14 @@ type Notification = EmailNotification | SMSNotification | SystemNotification;
 
 // ❌ Ta funkcja wymaga poprawy:
 export function getNotificationText(notification: Notification): string {
-  if (notification.type === 'email') {
-    return notification.content;
-  } else if (notification.type === 'system') {
-    return notification.log;
-  } else if (notification.type === 'sms') {
-    return notification.message;
+  switch (notification.type) {
+    case 'email':
+      return notification.content;
+    case 'system':
+      return notification.log;
+    case 'sms':
+      return notification.message;
+    default:
+      return 'Unknown notification';
   }
-
-  return 'Unknown notification';
 }
